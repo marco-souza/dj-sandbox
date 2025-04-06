@@ -1,8 +1,17 @@
-export function add(a: number, b: number): number {
-  return a + b;
-}
+import { downloadVideo } from "./downloader.ts";
 
-// Learn more at https://docs.deno.com/runtime/manual/examples/module_metadata#concepts
 if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
+  const [url, output = "video.mp4"] = Deno.args;
+
+  if (!url || !output) {
+    console.error(
+      "Usage: deno -RENW downloader.ts <url> [output]",
+    );
+    Deno.exit(1);
+  }
+
+  console.log(`Downloading video from ${url}...`);
+
+  const videoPath = await downloadVideo(url, output);
+  console.log(`Video downloaded to ${videoPath}`);
 }
