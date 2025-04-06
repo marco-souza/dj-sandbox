@@ -1,0 +1,17 @@
+{
+  "name": "@m3o/dj-sandbox",
+  "description": "A sandbox for learning the DJing art",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./main.ts",
+    "./downloader": "./downloader.ts"
+  },
+  "tasks": {
+    "dl": "deno run -RENW ./downloader.ts"
+    "dev": "deno run --watch main.ts"
+  },
+  "imports": {
+    "@distube/ytdl-core": "npm:@distube/ytdl-core@^4.16.8",
+    "@std/assert": "jsr:@std/assert@1"
+  }
+}
