@@ -17,7 +17,7 @@ func DownloadAudio(url string, ext string) error {
 		ExtractAudio().
 		AudioFormat(ext).
 		AudioQuality("0").
-		Output("%(title)s")
+		Output("%(playlist)s/%(title)s")
 
 	// execute
 	proc, err := dl.Run(context.TODO(), url)
