@@ -6,19 +6,22 @@ import (
 	yt "github.com/lrstanley/go-ytdlp"
 )
 
-func DownloadVideo(url string, output string) {
+func DownloadAudio(url string, ext string) error {
+	if len(ext) == 0 {
+		ext = "flac"
+	}
+
+	// download builder
 	dl := yt.New().
-		FormatSort("res,ext:mp4:m4a").
-		RecodeVideo("mp4")
+		ExtractAudio().
+		AudioFormat(ext).
+		AudioQuality("0").
+		Output("%(extractor)s - %(title)s")
 
-	if len(output) == 0 {
-		dl.Output("%(extractor)s - %(title)s.%(ext)s")
-	}
-
+	// execute
 	_, err := dl.Run(context.TODO(), url)
-	if err != nil {
-		panic(err)
-	}
+
+	return err
 }
 
 func init() {

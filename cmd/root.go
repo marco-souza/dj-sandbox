@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var outputName string
+var ext string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -20,14 +20,10 @@ var rootCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		youtubeURL := args[0]
-		handleDownload(youtubeURL, outputName)
+		fmt.Println("Downloading from URL:", youtubeURL)
+
+		youtube.DownloadAudio(youtubeURL, ext)
 	},
-}
-
-func handleDownload(youtubeURL string, outputName string) {
-	fmt.Println("Downloading from URL:", youtubeURL)
-
-	youtube.DownloadVideo(youtubeURL, outputName)
 }
 
 func Execute() {
@@ -38,5 +34,5 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringVarP(&outputName, "output", "o", "", "Specify the output file name")
+	rootCmd.Flags().StringVarP(&ext, "extension", "e", "", "Specify audio extension (default: flac)")
 }

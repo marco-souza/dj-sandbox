@@ -1,3 +1,5 @@
+i: install
+
 install: ./main.go
 	go install .
 
