@@ -1,2 +1,11 @@
+.DS_Store
+
+# yt-dlp formats
+*.ytdl
+*.part
+
+# music formats
 *.mp3
-*.mp4
+*.flac
+*.m4a
+

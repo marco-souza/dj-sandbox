@@ -2,6 +2,7 @@ package youtube
 
 import (
 	"context"
+	"fmt"
 
 	yt "github.com/lrstanley/go-ytdlp"
 )
@@ -16,10 +17,16 @@ func DownloadAudio(url string, ext string) error {
 		ExtractAudio().
 		AudioFormat(ext).
 		AudioQuality("0").
-		Output("%(extractor)s - %(title)s")
+		Output("%(title)s")
 
 	// execute
-	_, err := dl.Run(context.TODO(), url)
+	proc, err := dl.Run(context.TODO(), url)
+
+	fmt.Println(proc.Stdout)
+
+	if len(proc.Stderr) > 0 {
+		fmt.Errorf("%s", proc.Stderr)
+	}
 
 	return err
 }
