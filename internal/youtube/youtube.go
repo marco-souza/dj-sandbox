@@ -21,14 +21,12 @@ func DownloadAudio(url string, ext string) error {
 
 	// execute
 	proc, err := dl.Run(context.TODO(), url)
-
-	fmt.Println(proc.Stdout)
-
-	if len(proc.Stderr) > 0 {
-		fmt.Errorf("%s", proc.Stderr)
+	if err != nil {
+		return fmt.Errorf("%s - %s", err, proc.Stderr)
 	}
 
-	return err
+	fmt.Println(proc.Stdout)
+	return nil
 }
 
 func init() {
