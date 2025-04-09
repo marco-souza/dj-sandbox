@@ -21,6 +21,7 @@ func DownloadAudio(url string, ext string, tr *shared.TimeRange) error {
 		Output("%(playlist)s/%(title)s")
 
 	if tr != nil {
+		fmt.Println("Time range:", tr.String())
 		dl.
 			DownloadSections(tr.String()).
 			ForceKeyframesAtCuts()
