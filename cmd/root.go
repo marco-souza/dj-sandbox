@@ -39,7 +39,7 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringVarP(&ext, "extension", "ext", "", "Specify audio extension (default: flac)")
+	rootCmd.Flags().StringVarP(&ext, "ext", "x", "", "Specify audio extension (default: flac)")
 	rootCmd.Flags().StringVarP(&start, "start", "s", "", "Specify start time (format: HH:MM:SS.ms)")
 	rootCmd.Flags().StringVarP(&end, "end", "e", "", "Specify end time (format: HH:MM:SS.ms)")
 }
