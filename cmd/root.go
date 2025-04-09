@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"marco-souza/dj-sandbox/internal/shared"
 	"marco-souza/dj-sandbox/internal/youtube"
 	"os"
 
@@ -12,6 +13,8 @@ import (
 )
 
 var ext string
+var start string
+var end string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
@@ -22,7 +25,9 @@ var rootCmd = &cobra.Command{
 		youtubeURL := args[0]
 		fmt.Println("Downloading from URL:", youtubeURL)
 
-		youtube.DownloadAudio(youtubeURL, ext)
+		tr := shared.NewTimeRange(start, end)
+
+		youtube.DownloadAudio(youtubeURL, ext, tr)
 	},
 }
 
@@ -35,4 +40,6 @@ func Execute() {
 
 func init() {
 	rootCmd.Flags().StringVarP(&ext, "extension", "e", "", "Specify audio extension (default: flac)")
+	rootCmd.Flags().StringVarP(&start, "start", "s", "", "Specify start time (format: HH:MM:SS.ms)")
+	rootCmd.Flags().StringVarP(&end, "end", "e", "", "Specify end time (format: HH:MM:SS.ms)")
 }

@@ -3,11 +3,12 @@ package youtube
 import (
 	"context"
 	"fmt"
+	"marco-souza/dj-sandbox/internal/shared"
 
 	yt "github.com/lrstanley/go-ytdlp"
 )
 
-func DownloadAudio(url string, ext string) error {
+func DownloadAudio(url string, ext string, tr *shared.TimeRange) error {
 	if len(ext) == 0 {
 		ext = "flac"
 	}
@@ -18,6 +19,12 @@ func DownloadAudio(url string, ext string) error {
 		AudioFormat(ext).
 		AudioQuality("0").
 		Output("%(playlist)s/%(title)s")
+
+	if tr != nil {
+		dl.
+			DownloadSections(tr.String()).
+			ForceKeyframesAtCuts()
+	}
 
 	// execute
 	proc, err := dl.Run(context.TODO(), url)
