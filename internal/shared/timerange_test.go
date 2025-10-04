@@ -1,7 +1,7 @@
 package shared_test
 
 import (
-	s "marco-souza/dj-sandbox/internal/shared"
+	s "marco-souza/djc/internal/shared"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -44,7 +44,7 @@ func TestTimeRangeString(t *testing.T) {
 			expected: "*00:05:00.0-inf",
 		},
 		{
-			name:     "Without miliseconds",
+			name:     "Without milliseconds",
 			tr:       &s.TimeRange{Start: "01:00", End: "02:00"},
 			expected: "*01:00-02:00",
 		},

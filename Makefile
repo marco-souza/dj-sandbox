@@ -7,5 +7,5 @@ test: install
 	go test ./...
 
 run: install
-	dj-sandbox
+	djc
 

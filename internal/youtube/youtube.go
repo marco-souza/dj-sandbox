@@ -3,7 +3,7 @@ package youtube
 import (
 	"context"
 	"fmt"
-	"marco-souza/dj-sandbox/internal/shared"
+	"marco-souza/djc/internal/shared"
 
 	yt "github.com/lrstanley/go-ytdlp"
 )

@@ -1,4 +1,4 @@
-module marco-souza/dj-sandbox
+module marco-souza/djc
 
 go 1.24.2
 
